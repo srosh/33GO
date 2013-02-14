@@ -1,0 +1,27 @@
+{
+  "name": "3390",
+  "version": "0.0.0",
+  "description": "a DOM template engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/srosh/33GO.git"
+  },
+  "keywords": [
+    "DOM",
+    "template",
+    "static",
+    "html",
+    "emmet",
+    "zencoding",
+    "markdown",
+    "md",
+    "jsonml",
+    "json"
+  ],
+  "author": "Soroosh Izadian",
+  "license": "MIT"
+}
