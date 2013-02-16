@@ -29,10 +29,16 @@ Template.prototype.read = function (source,toParent) {
 			this.read(from[i],this.dom.openTags.pop());
 		} else if(typeof from[i] == 'string') {
 			var extension = from[i].match(/\.([\w]+)$/);
-			var mod;
+			var mod,fromfn=from[i];
+			if(!extension && this.vars[from[i]]) {
+				fromfn = this.vars[from[i]];
+				if (typeof fromfn == 'string') extension = fromfn.match(/\.([\w]+)$/);
+			}
 			if (extension && (mod = this.mods[extension[1].toLowerCase()])) {
-				mod.readFile(from[i],parent);
-			} else throw new Error(from[i]+' not recognised.');
+				mod.readFile(fromfn,parent);
+			} else {
+				this.read(fromfn,toParent);
+			};
 		} else {
 			var mod = this.mods[from[i].mod];
 			if (from[i].type && from[i].type == 'file') {
@@ -53,7 +59,7 @@ Template.prototype.read = function (source,toParent) {
 }
 
 Template.prototype.render = function () {
-	return this.mods.html.render();
+	return this.mods.html.render(true);
 }
 
 var jsonReadFile = function (fn) {

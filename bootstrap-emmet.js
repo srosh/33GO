@@ -39,6 +39,12 @@ var progress = function (arr) {
 		return 'div.progress'+(active ? '.active' : '')+classJoin(pcls,'progress-')+'>div[style="width: '+percent+'%;"].bar'+classJoin(barcls,'bar-');
 	}
 }
+var prevnext = function (arr) {
+	var links = [];
+	if(arr[0]) links.push('li.previous>a'+Emmet.text(arr[0][1])+'[href="'+arr[0][0]+'"]');
+	if(arr[1]) links.push('li.next>a'+Emmet.text(arr[1][1])+'[href="'+arr[1][0]+'"]');
+	return 'ul.pager>'+Emmet.join(links);
+}
 var linklist = function (arr) {
 	var res = [];
 	var from = arr.slice();
@@ -56,4 +62,5 @@ Emmet.links = linklist;
 Emmet.BSnavbar= navbar;
 Emmet.BSbtn = btnlink;
 Emmet.BShero = herounit;
+Emmet.BSpager = prevnext;
 Emmet.BSprogress = progress;
